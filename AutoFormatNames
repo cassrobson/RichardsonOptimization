@@ -1,0 +1,42 @@
+Sub AddCommaAfterFirstWord()
+    Dim ws As Worksheet
+    Dim columnRange As Range
+    Dim cell As Range
+    
+    ' Set the worksheet object
+    Set ws = ThisWorkbook.Sheets("Sheet1") ' Replace "Sheet1" with your sheet name
+    
+    ' Set the range object for the column
+    Set columnRange = ws.Range("C3:C1952")
+    
+    ' Loop through each cell in the column
+    For Each cell In columnRange
+        Dim cellValue As String
+        cellValue = Trim(cell.Value) ' Remove leading/trailing spaces
+        
+        ' Check if the cell value contains a comma
+        If InStr(cellValue, ",") = 0 Then
+            ' Insert a comma after the first word
+            Dim firstWord As String
+            If InStr(cellValue, " ") > 0 Then
+                firstWord = Split(cellValue, " ")(0)
+                cell.Value = firstWord & ", " & Right(cellValue, Len(cellValue) - Len(firstWord))
+            Else
+                ' No space found, do something (e.g., skip the cell or add default value)
+                ' Example: cell.Value = "Default Value"
+            End If
+        Else
+            ' Check if there is a space between the comma and the next word
+            Dim commaIndex As Integer
+            commaIndex = InStr(cellValue, ",")
+            If commaIndex < Len(cellValue) - 1 Then
+                If Mid(cellValue, commaIndex + 1, 1) <> " " Then
+                    ' Insert a space after the comma
+                    cell.Value = Left(cellValue, commaIndex) & ", " & Right(cellValue, Len(cellValue) - commaIndex - 1)
+                End If
+            End If
+        End If
+    Next cell
+    
+    MsgBox "Commas and spaces added or adjusted!"
+End Sub
