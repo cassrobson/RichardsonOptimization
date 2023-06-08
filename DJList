@@ -1,0 +1,232 @@
+Sub CombineFirstAndLastNames()
+    Dim ws As Worksheet
+    Dim firstNameColumn As Range, lastNameColumn As Range
+    Dim fullNameColumn As Range
+    Dim lastRow As Long
+    
+    ' Set the worksheet object
+    Set ws = ThisWorkbook.Sheets("Sheet1") ' Change "Sheet1" to the name of your sheet
+    
+    ' Set the ranges for the first name and last name columns
+    With ws
+        lastRow = .Cells(.Rows.Count, "A").End(xlUp).Row ' Assuming first name column is column A
+        
+        Set firstNameColumn = .Range("A2:A" & lastRow)
+        Set lastNameColumn = .Range("B1:B" & lastRow)
+        
+        ' Insert a new column for the full name
+        .Columns("O").Insert Shift:=xlToRight
+        
+        ' Set the range for the full name column
+        Set fullNameColumn = .Range("O2:O" & lastRow)
+        
+        ' Combine first name and last name into the full name column
+        fullNameColumn.FormulaR1C1 = "=RC[-14] & "" "" & RC[-13]" ' Assumes first name is in column A and last name is in column B
+        fullNameColumn.Value = fullNameColumn.Value ' Convert the formulas to values
+    End With
+End Sub
+
+Sub CombineFirstAndLastNames2()
+    Dim ws As Worksheet
+    Dim firstNameColumn As Range, lastNameColumn As Range
+    Dim fullNameColumn As Range
+    Dim lastRow As Long
+    
+    ' Set the worksheet object
+    Set ws = ThisWorkbook.Sheets("Sheet2") ' Change "Sheet1" to the name of your sheet
+    
+    ' Set the ranges for the first name and last name columns
+    With ws
+        lastRow = .Cells(.Rows.Count, "A").End(xlUp).Row ' Assuming first name column is column A
+        
+        Set firstNameColumn = .Range("A11:A" & lastRow)
+        Set lastNameColumn = .Range("B11:B" & lastRow)
+        
+        ' Insert a new column for the full name
+        .Columns("D").Insert Shift:=xlToRight
+        
+        ' Set the range for the full name column
+        Set fullNameColumn = .Range("D11:D" & lastRow)
+        
+        ' Combine first name and last name into the full name column
+        fullNameColumn.FormulaR1C1 = "=RC[-3] & "" "" & RC[-1]" ' Assumes first name is in column A and last name is in column B
+        fullNameColumn.Value = fullNameColumn.Value ' Convert the formulas to values
+    End With
+End Sub
+
+Sub CompareFullNames()
+    Dim ws1 As Worksheet, ws2 As Worksheet
+    Dim fullNameList1 As Range, fullNameList2 As Range
+    Dim fullName1 As Range, fullName2 As Range
+    Dim nameToSearch As String
+    Dim lastRow As Long, i As Long
+    
+    ' Set the worksheet objects
+    Set ws1 = ThisWorkbook.Sheets("Sheet1")
+    Set ws2 = ThisWorkbook.Sheets("Sheet2")
+    
+    ' Set the ranges for the full name columns in both sheets
+    Set fullNameList1 = ws1.Range("O2:O" & ws1.Cells(ws1.Rows.Count, 1).End(xlUp).Row)
+    Set fullNameList2 = ws2.Range("D11:D" & ws2.Cells(ws2.Rows.Count, 1).End(xlUp).Row)
+    
+    ' Loop through each full name in Sheet1
+    For Each fullName1 In fullNameList1
+        nameToSearch = fullName1.Value
+        
+        ' Check if the name is contained in Sheet2
+        If IsNameInList(nameToSearch, fullNameList2) Then
+            ' Highlight the cell in Sheet1 as red
+            fullName1.EntireRow.Interior.Color = RGB(255, 0, 0)
+        End If
+    Next fullName1
+    
+    ' Move highlighted rows to the bottom
+    lastRow = ws1.Cells(ws1.Rows.Count, 1).End(xlUp).Row
+    For i = lastRow To 2 Step -1
+        If ws1.Cells(i, "O").Interior.Color = RGB(255, 0, 0) Then
+            ws1.Rows(i).Cut
+            ws1.Rows(lastRow + 1).Insert Shift:=xlDown
+            lastRow = lastRow - 1
+        End If
+    Next i
+    
+    ' Remove empty rows
+    ws1.Range("O1:O" & ws1.Cells(ws1.Rows.Count, 1).End(xlUp).Row).SpecialCells(xlCellTypeBlanks).EntireRow.Delete Shift:=xlUp
+End Sub
+
+Function IsNameInList(nameToSearch As String, searchRange As Range) As Boolean
+    Dim cell As Range
+    Dim searchName As String
+    
+    ' Loop through each cell in the search range
+    For Each cell In searchRange
+        searchName = cell.Value
+        
+        ' Compare the names ignoring case and spaces
+        If UCase(Trim(nameToSearch)) = UCase(Trim(searchName)) Then
+            IsNameInList = True
+            Exit Function
+        End If
+    Next cell
+    
+    ' Name not found in the list
+    IsNameInList = False
+End Function
+
+Sub RemoveSpecialCharacters()
+    Dim ws As Worksheet
+    Dim nameColumn As Range, cell As Range
+    
+    ' Set the worksheet object
+    Set ws = ThisWorkbook.Sheets("Sheet1")
+    
+    ' Set the range for the name column
+    Set nameColumn = ws.Range("A2:A" & ws.Cells(ws.Rows.Count, 1).End(xlUp).Row)
+    
+    ' Loop through each cell in the name column
+    For Each cell In nameColumn
+        ' Remove '/' or ',' characters from the cell value
+        cell.Value = Replace(cell.Value, "/", "")
+        cell.Value = Replace(cell.Value, ",", "")
+    Next cell
+End Sub
+
+Sub CheckRWBranch()
+    Dim ws As Worksheet
+    Dim sourceRange As Range
+    Dim destRange As Range
+    Dim cell As Range
+    Dim Montreal As String
+    Dim newMonty As String
+    
+    
+    'Set worksheek object
+    Set ws = ThisWorkbook.Sheets("Sheet1")
+    Set sourceRange = ws.Range("M3:M" & ws.Cells(ws.Rows.Count, 1).End(xlUp).Row)
+    
+    Montreal = "Montreal"
+    newMonty = "Montréal"
+    
+    For Each cell In sourceRange
+        If InStr(1, cell.Value, Montreal, vbTextCompare) > 0 Then
+            cell.Value = newMonty
+        End If
+    Next cell
+End Sub
+
+Sub CompareFullNamesSameColumn()
+    Dim ws1 As Worksheet
+    Dim fullNameList1 As Range
+    Dim fullName1 As Range
+    Dim nameToSearch As String
+    Dim lastRow As Long, i As Long
+    
+    ' Set the worksheet objects
+    Set ws1 = ThisWorkbook.Sheets("Sheet1")
+    
+    ' Set the range for the full name column in Sheet1
+    Set fullNameList1 = ws1.Range("O2:O" & ws1.Cells(ws1.Rows.Count, 15).End(xlUp).Row) ' Assuming full names are in column O (column 15)
+    
+    ' Loop through each full name in Sheet1
+    For Each fullName1 In fullNameList1
+        nameToSearch = fullName1.Value
+        
+        ' Check if the name has duplicates below in the same column
+        If HasDuplicatesBelow(nameToSearch, fullName1) Then
+            ' Highlight the cell in Sheet1 as red
+            fullName1.Interior.Color = RGB(255, 0, 0)
+        End If
+    Next fullName1
+End Sub
+
+Function HasDuplicatesBelow(nameToSearch As String, currentCell As Range) As Boolean
+    Dim cell As Range
+    Dim searchRange As Range
+    
+    ' Set the search range to cells below the current cell in the same column
+    Set searchRange = currentCell.Offset(1).Resize(currentCell.Parent.Cells(currentCell.Parent.Rows.Count, currentCell.Column).Row - currentCell.Row)
+    
+    ' Loop through each cell in the search range
+    For Each cell In searchRange
+        ' Compare the names ignoring case and spaces
+        If UCase(Trim(nameToSearch)) = UCase(Trim(cell.Value)) Then
+            HasDuplicatesBelow = True
+            Exit Function
+        End If
+    Next cell
+    
+    ' No duplicates found below
+    HasDuplicatesBelow = False
+End Function
+
+Sub removeempties()
+    Dim ws1 As Worksheet
+    
+    Set ws1 = ThisWorkbook.Sheets("Sheet1")
+
+    ws1.Range("O1:O" & ws1.Cells(ws1.Rows.Count, 1).End(xlUp).Row).SpecialCells(xlCellTypeBlanks).EntireRow.Delete Shift:=xlUp
+End Sub
+
+Sub CombineFirstAndLastNamesCompany()
+    Dim ws As Worksheet
+    Dim firstNameColumn As Range, lastNameColumn As Range
+    Dim fullNameColumn As Range
+    Dim lastRow As Long
+    
+    ' Set the worksheet object
+    Set ws = ThisWorkbook.Sheets("Sheet1") ' Change "Sheet1" to the name of your sheet
+    
+    ' Set the ranges for the first name and last name columns
+    With ws
+        
+        Set firstNameColumn = .Range("A2:A2638")
+        Set lastNameColumn = .Range("B2:B2638")
+        
+        ' Set the range for the full name column
+        Set fullNameColumn = .Range("E2:E2638")
+        
+        ' Combine first name and last name into the full name column
+        fullNameColumn.FormulaR1C1 = "=RC[-4] & "" "" & RC[-3] & "" Team""" ' Assumes first name is in column A and last name is in column B
+        fullNameColumn.Value = fullNameColumn.Value ' Convert the formulas to values
+    End With
+End Sub
