@@ -1,0 +1,348 @@
+Sub CheckandPrintWords()
+    Dim ws As Worksheet
+    Dim sourceRange As Range
+    Dim destRange As Range
+    Dim cell As Range
+    Dim Toronto As String, Montreal As String
+    Dim GrandCayman As String
+    Dim Waterloo As String
+    Dim Sherbrooke As String
+    Dim Edmonton As String
+    Dim CanadaAsiaCentre As String
+    Dim Vancouver As String
+    Dim Kelowna As String
+    Dim Laval As String
+    Dim Mississauga As String
+    Dim Dome As String
+    Dim Calgary As String
+    Dim Vanc As String
+    Dim Richmond As String
+    Dim Guelph As String
+    Dim WhiteRock As String
+    Dim Hamilton As String
+    Dim Barrie As String
+    Dim Newmarket As String
+    Dim Ottawa As String
+    Dim Victoria As String
+    Dim Yonge As String, Halifax As String, Vaughan As String, Winnipeg As String, OwenSound As String, Yorkville As String, PointeClaire As String
+    Dim Windsor As String, Alberta As String, MedicineHat As String, Sarnia As String, Kamloops As String, Niagara As String, Charlottetown As String
+    Dim Nanaimo As String, Hilaire As String, QuebecCity As String, LaGauch As String, PointeSpace As String, Langley As String, Battleford As String
+    Dim Orillia As String, GrandPrairie As String, Peterborough As String, SalmonArm As String, ThunderBay As String, Regina As String, SaintJohn As String
+    Dim Courtenay As String, Midland As String, RichmondHill As String, Brantford As String, Catharines As String, Moncton As String, Belleville As String
+    Dim Fredericton As String, GeorgiaView As String, Chicoutimi As String, NewWestminster As String, Stratford As String, SteMarie As String, Moose As String
+    Dim Whitehorse As String, NorthBay As String, Brockville As String, Lloydminster As String, Gatineau As String, Kingston As String, Cranbrook As String
+    
+    
+    Dim Simcoe As String, Sudbury As String, StHilare As String, Kerrisdale As String, Oakville As String, SamonArm As String, Durham As String, TroisRivieres As String
+    Dim Coquitlam As String, Chatham As String, Nassau As String, NorthYork As String, London As String, Burlington As String, Collingwood As String
+    Dim Veron As String, RedDeer As String, StJohns As String, Granby As String, Lethbridge As String, Saskatoon As String, Etobicoke As String
+    
+    
+    
+    
+    
+
+    'Set the worksheet object
+    Set ws = ThisWorkbook.Sheets("Sheet1")
+    
+    'Set the range object for the source column
+    Set sourceRange = ws.Range("B2:B" & ws.Cells(ws.Rows.Count, 1).End(xlUp).Row)
+    Set destRange = ws.Range("C2:C" & ws.Cells(ws.Rows.Count, 1).End(xlUp).Row)
+    Cranbrook = "Cranbrook"
+    Kingson = "Kingston"
+    Gatineau = "Gatineau"
+    Lloydminster = "Lloydminster"
+    NorthBay = "North Bay"
+    Brockville = "Brockville"
+    Whitehorse = "Whitehorse"
+    Moose = "Moose Jaw"
+    SteMarie = "Sault Ste. Marie"
+    Stratford = "Stratford"
+    NewWestminster = "New Westminster"
+    Chicoutimi = "Chicoutimi"
+    GeorgiaView = "Georgia View Village"
+    Fredericton = "Fredericton"
+    Moncton = "Moncton"
+    Belleville = "Belleville"
+    Catharines = "St. Catharines"
+    Brantford = "Brantford"
+    Richmond = "Richmond       "
+    Midland = "Midland"
+    Courtenay = "Courtenay"
+    SaintJohn = "Saint John"
+    Regina = "Regina"
+    ThunderBay = "Thunder Bay"
+    SalmonArm = "Salmon Arm"
+    Peterborough = "Peterborough"
+    GrandPrairie = "Grande Prairie"
+    Orillia = "Orillia"
+    Battleford = "North Battleford"
+    Langley = "Langley"
+    PointeSpace = "Pointe Claire"
+    LaGauch = "1000 La Gauchetiere"
+    QuebecCity = "Quebec City"
+    Hilaire = "St. Hilaire"
+    Nanaimo = "Nanaimo"
+    Etobicoke = "Etobicoke"
+    Veron = "Vernon"
+    RedDeer = "Red Deer"
+    StJohns = "St. John's"
+    Granby = "Granby"
+    Lethbridge = "Lethbridge"
+    Saskatoon = "saskatoon"
+    Saskatooncaps = "Saskatoon"
+    Simcoe = "Simcoe"
+    Sudbury = "Sudbury"
+    StHilare = "St Hilare"
+    Kerrisdale = "Kerrisdale"
+    Oakville = "Oakville"
+    SamonArm = "Samon Arm"
+    Durham = "Durham"
+    TroisRivieres = "Trois Rivieres"
+    Coquitlam = "Coquitlam"
+    Chatham = "Chatham"
+    Nassau = "Nassau"
+    NorthYork = "North York"
+    London = "London"
+    Chatham = "Chatham"
+    Burlington = "Burlington"
+    Collingwood = "Collingwood"
+    Windsor = "Windsor"
+    Toronto = "Toronto"
+    Montreal = "Montreal"
+    GrandCayman = "Grand Cayman"
+    Waterloo = "Waterloo"
+    Sherbrooke = "Sherbrooke"
+    Edmonton = "Edmonton"
+    CanadaAsiaCentre = "Canada Asia Centre"
+    Vancouver = "Vancouver"
+    Kelowna = "Kelowna"
+    Laval = "Laval"
+    Mississauga = "Mississauga"
+    Dome = "Dome"
+    Calgary = "Calgary"
+    Vanc = "Vanc"
+    RichmondHill = "Richmond Hill"
+    Guelph = "Guelph"
+    WhiteRock = "White Rock"
+    Hamilton = "Hamilton"
+    Ottawa = "Ottawa"
+    Victoria = "Victoria"
+    Barrie = "Barrie"
+    Yonge = "Yonge"
+    Halifax = "Halifax"
+    Vaughan = "Vaughan"
+    Winnipeg = "Winnipeg"
+    OwenSound = "Owen Sound"
+    Yorkville = "Yorkville"
+    PointeClaire = "Pointe-Claire"
+    Newmarket = "Newmarket"
+    Alberta = "Alberta"
+    MedicineHat = "Medicine Hat"
+    Sarnia = "Sarnia"
+    Kamloops = "Kamloops"
+    Charlottetown = "Charlottetown"
+    Niagara = "Niagara Falls"
+    For Each cell In sourceRange
+        'Check if the search word is contained in the cell value
+        If InStr(1, cell.Value, Toronto, vbTextCompare) > 0 Then
+            destRange.Value = Toronto
+        ElseIf InStr(1, cell.Value, Cranbrook, vbTextCompare) > 0 Then
+            destRange.Value = Cranbrook
+        ElseIf InStr(1, cell.Value, Kingston, vbTextCompare) > 0 Then
+            destRange.Value = Kingston
+        ElseIf InStr(1, cell.Value, Gatineau, vbTextCompare) > 0 Then
+            destRange.Value = Gatineau
+        ElseIf InStr(1, cell.Value, Lloydminster, vbTextCompare) > 0 Then
+            destRange.Value = Lloydminster
+        ElseIf InStr(1, cell.Value, Brockville, vbTextCompare) > 0 Then
+            destRange.Value = Brockville
+        ElseIf InStr(1, cell.Value, NorthBay, vbTextCompare) > 0 Then
+            destRange.Value = NorthBay
+        ElseIf InStr(1, cell.Value, GrandPrairie, vbTextCompare) > 0 Then
+            destRange.Value = GrandPrairie
+        ElseIf InStr(1, cell.Value, Whitehorse, vbTextCompare) > 0 Then
+            destRange.Value = Whitehorse
+        ElseIf InStr(1, cell.Value, Moose, vbTextCompare) > 0 Then
+            destRange.Value = Moose
+        ElseIf InStr(1, cell.Value, SteMarie, vbTextCompare) > 0 Then
+            destRange.Value = SteMarie
+        ElseIf InStr(1, cell.Value, Stratford, vbTextCompare) > 0 Then
+            destRange.Value = Stratford
+        ElseIf InStr(1, cell.Value, NewWestminster, vbTextCompare) > 0 Then
+            destRange.Value = NewWestminster
+        ElseIf InStr(1, cell.Value, Chicoutimi, vbTextCompare) > 0 Then
+            destRange.Value = Chicoutimi
+        ElseIf InStr(1, cell.Value, GeorgiaView, vbTextCompare) > 0 Then
+            destRange.Value = Nanaimo
+        ElseIf InStr(1, cell.Value, Fredericton, vbTextCompare) > 0 Then
+            destRange.Value = Fredericton
+        ElseIf InStr(1, cell.Value, Moncton, vbTextCompare) > 0 Then
+            destRange.Value = Moncton
+        ElseIf InStr(1, cell.Value, Belleville, vbTextCompare) > 0 Then
+            destRange.Value = Belleville
+        ElseIf InStr(1, cell.Value, Catharines, vbTextCompare) > 0 Then
+            destRange.Value = Catharines
+        ElseIf InStr(1, cell.Value, Brantford, vbTextCompare) > 0 Then
+            destRange.Value = Brantford
+        ElseIf InStr(1, cell.Value, Richmond, vbTextCompare) > 0 Then
+            destRange.Value = Richmond
+        ElseIf InStr(1, cell.Value, Midland, vbTextCompare) > 0 Then
+            destRange.Value = Midland
+        ElseIf InStr(1, cell.Value, Courtenay, vbTextCompare) > 0 Then
+            destRange.Value = Courtenay
+        ElseIf InStr(1, cell.Value, SaintJohn, vbTextCompare) > 0 Then
+            destRange.Value = SaintJohn
+        ElseIf InStr(1, cell.Value, Regina, vbTextCompare) > 0 Then
+            destRange.Value = Regina
+        ElseIf InStr(1, cell.Value, ThunderBay, vbTextCompare) > 0 Then
+            destRange.Value = ThunderBay
+        ElseIf InStr(1, cell.Value, SalmonArm, vbTextCompare) > 0 Then
+            destRange.Value = SalmonArm
+        ElseIf InStr(1, cell.Value, Peterborough, vbTextCompare) > 0 Then
+            destRange.Value = Peterborough
+        ElseIf InStr(1, cell.Value, GrandPrairie, vbTextCompare) > 0 Then
+            destRange.Value = GrandPrairie
+        ElseIf InStr(1, cell.Value, Orillia, vbTextCompare) > 0 Then
+            destRange.Value = Orillia
+        ElseIf InStr(1, cell.Value, Battleford, vbTextCompare) > 0 Then
+            destRange.Value = Battleford
+        ElseIf InStr(1, cell.Value, Langley, vbTextCompare) > 0 Then
+            destRange.Value = Langley
+        ElseIf InStr(1, cell.Value, PointeSpace, vbTextCompare) > 0 Then
+            destRange.Value = PointeClaire
+        ElseIf InStr(1, cell.Value, LaGauch, vbTextCompare) > 0 Then
+            destRange.Value = Montreal
+        ElseIf InStr(1, cell.Value, QuebecCity, vbTextCompare) > 0 Then
+            destRange.Value = QuebecCity
+        ElseIf InStr(1, cell.Value, Hilaire, vbTextCompare) > 0 Then
+            destRange.Value = Hilaire
+        ElseIf InStr(1, cell.Value, Nanaimo, vbTextCompare) > 0 Then
+            destRange.Value = Nanaimo
+        ElseIf InStr(1, cell.Value, Montreal, vbTextCompare) > 0 Then
+            destRange.Value = Montreal
+        ElseIf InStr(1, cell.Value, GrandCayman, vbTextCompare) > 0 Then
+            destRange.Value = GrandCayman
+        ElseIf InStr(1, cell.Value, Waterloo, vbTextCompare) > 0 Then
+            destRange.Value = Waterloo
+        ElseIf InStr(1, cell.Value, Sherbrooke, vbTextCompare) > 0 Then
+            destRange.Value = Sherbrooke
+        ElseIf InStr(1, cell.Value, Edmonton, vbTextCompare) > 0 Then
+            destRange.Value = Edmonton
+        ElseIf InStr(1, cell.Value, CanadaAsiaCentre, vbTextCompare) > 0 Then
+            destRange.Value = Vancouver
+        ElseIf InStr(1, cell.Value, Vancouver, vbTextCompare) > 0 Then
+            destRange.Value = Vancouver
+        ElseIf InStr(1, cell.Value, Kelowna, vbTextCompare) > 0 Then
+            destRange.Value = Kelowna
+        ElseIf InStr(1, cell.Value, Laval, vbTextCompare) > 0 Then
+            destRange.Value = Laval
+        ElseIf InStr(1, cell.Value, Mississauga, vbTextCompare) > 0 Then
+            destRange.Value = Mississauga
+        ElseIf InStr(1, cell.Value, Dome, vbTextCompare) > 0 Then
+            destRange.Value = Calgary
+        ElseIf InStr(1, cell.Value, Calgary, vbTextCompare) > 0 Then
+            destRange.Value = Calgary
+        ElseIf InStr(1, cell.Value, Vanc, vbTextCompare) > 0 Then
+            destRange.Value = Vancouver
+        ElseIf InStr(1, cell.Value, RichmondHill, vbTextCompare) > 0 Then
+            destRange.Value = RichmondHill
+        ElseIf InStr(1, cell.Value, Guelph, vbTextCompare) > 0 Then
+            destRange.Value = Guelph
+        ElseIf InStr(1, cell.Value, WhiteRock, vbTextCompare) > 0 Then
+            destRange.Value = WhiteRock
+        ElseIf InStr(1, cell.Value, Hamilton, vbTextCompare) > 0 Then
+            destRange.Value = Hamilton
+        ElseIf InStr(1, cell.Value, Ottawa, vbTextCompare) > 0 Then
+            destRange.Value = Ottawa
+        ElseIf InStr(1, cell.Value, Victoria, vbTextCompare) > 0 Then
+            destRange.Value = Victoria
+        ElseIf InStr(1, cell.Value, Barrie, vbTextCompare) > 0 Then
+            destRange.Value = Barrie
+        ElseIf InStr(1, cell.Value, Yonge, vbTextCompare) > 0 Then
+            destRange.Value = Toronto
+        ElseIf InStr(1, cell.Value, Halifax, vbTextCompare) > 0 Then
+            destRange.Value = Halifax
+        ElseIf InStr(1, cell.Value, Vaughan, vbTextCompare) > 0 Then
+            destRange.Value = Vaughan
+        ElseIf InStr(1, cell.Value, Winnipeg, vbTextCompare) > 0 Then
+            destRange.Value = Winnipeg
+        ElseIf InStr(1, cell.Value, Yorkville, vbTextCompare) > 0 Then
+            destRange.Value = Yorkville
+        ElseIf InStr(1, cell.Value, OwenSound, vbTextCompare) > 0 Then
+            destRange.Value = OwenSound
+        ElseIf InStr(1, cell.Value, PointeClaire, vbTextCompare) > 0 Then
+            destRange.Value = PointeClaire
+        ElseIf InStr(1, cell.Value, Newmarket, vbTextCompare) > 0 Then
+            destRange.Value = Newmarket
+        ElseIf InStr(1, cell.Value, Simcoe, vbTextCompare) > 0 Then
+            destRange.Value = Simcoe
+        ElseIf InStr(1, cell.Value, Sudbury, vbTextCompare) > 0 Then
+            destRange.Value = Sudbury
+        ElseIf InStr(1, cell.Value, StHilare, vbTextCompare) > 0 Then
+            destRange.Value = StHilare
+        ElseIf InStr(1, cell.Value, Kerrisdale, vbTextCompare) > 0 Then
+            destRange.Value = Kerrisdale
+        ElseIf InStr(1, cell.Value, Oakville, vbTextCompare) > 0 Then
+            destRange.Value = Oakville
+        ElseIf InStr(1, cell.Value, SamonArm, vbTextCompare) > 0 Then
+            destRange.Value = SamonArm
+        ElseIf InStr(1, cell.Value, Durham, vbTextCompare) > 0 Then
+            destRange.Value = Durham
+        ElseIf InStr(1, cell.Value, TroisRivieres, vbTextCompare) > 0 Then
+            destRange.Value = TroisRivieres
+        ElseIf InStr(1, cell.Value, Coquitlam, vbTextCompare) > 0 Then
+            destRange.Value = Coquitlam
+        ElseIf InStr(1, cell.Value, Chatham, vbTextCompare) > 0 Then
+            destRange.Value = Chatham
+        ElseIf InStr(1, cell.Value, Nassau, vbTextCompare) > 0 Then
+            destRange.Value = Nassau
+        ElseIf InStr(1, cell.Value, NorthYork, vbTextCompare) > 0 Then
+            destRange.Value = NorthYork
+        ElseIf InStr(1, cell.Value, London, vbTextCompare) > 0 Then
+            destRange.Value = London
+        ElseIf InStr(1, cell.Value, Burlington, vbTextCompare) > 0 Then
+            destRange.Value = Burlington
+        ElseIf InStr(1, cell.Value, Collingwood, vbTextCompare) > 0 Then
+            destRange.Value = Collingwood
+        ElseIf InStr(1, cell.Value, Saskatoon, vbTextCompare) > 0 Then
+            destRange.Value = Saskatooncaps
+        ElseIf InStr(1, cell.Value, Veron, vbTextCompare) > 0 Then
+            destRange.Value = Veron
+        ElseIf InStr(1, cell.Value, RedDeer, vbTextCompare) > 0 Then
+            destRange.Value = RedDeer
+        ElseIf InStr(1, cell.Value, StJohns, vbTextCompare) > 0 Then
+            destRange.Value = StJohns
+        ElseIf InStr(1, cell.Value, Granby, vbTextCompare) > 0 Then
+            destRange.Value = Granby
+        ElseIf InStr(1, cell.Value, Lethbridge, vbTextCompare) > 0 Then
+            destRange.Value = Lethbridge
+        ElseIf InStr(1, cell.Value, Etobicoke, vbTextCompare) > 0 Then
+            destRange.Value = Etobicoke
+        ElseIf InStr(1, cell.Value, Windsor, vbTextCompare) > 0 Then
+            destRange.Value = Windsor
+        ElseIf InStr(1, cell.Value, MedicineHat, vbTextCompare) > 0 Then
+            destRange.Value = MedicineHat
+        ElseIf InStr(1, cell.Value, Sarnia, vbTextCompare) > 0 Then
+            destRange.Value = Sarnia
+        ElseIf InStr(1, cell.Value, Kamloops, vbTextCompare) > 0 Then
+            destRange.Value = Kamloops
+        ElseIf InStr(1, cell.Value, Niagara, vbTextCompare) > 0 Then
+            destRange.Value = Niagara
+        ElseIf InStr(1, cell.Value, Charlottetown, vbTextCompare) > 0 Then
+            destRange.Value = Charlottetown
+        
+        End If
+        
+        
+        'Move the destination range down by one row
+        Set destRange = destRange.Offset(1, 0)
+        
+    Next cell
+    
+    
+    MsgBox "City column populated!", vbInformation
+    
+    
+    
+End Sub
